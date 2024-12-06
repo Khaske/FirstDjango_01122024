@@ -12,10 +12,23 @@ items = [
 ]
 
 
-def get_items(request, item_id):
-    # пройти циклом
-    return HttpResponse(items[item_id])
-
+def get_item(request, item_id):
+    for item in items:
+        if item["id"] == item_id:
+            return HttpResponse(f"<p>Товар с id={item["id"]}: {item["name"]}, {item["quantity"]} шт.</p>")
+    else:
+        return HttpResponse(f"<p>Товар с id={item_id}: не найден</p>")
+    
+def get_items_list(request):
+    list = """
+    <strong>Список всех товаров:</strong>
+    <ol>\n
+    """
+    for item in items:
+        list += f"    <li>{item["name"]}, {item["quantity"]} шт.</li>\n"
+    list += "</ol>"
+    return HttpResponse(list)
+        
 def home(request):
     text = """
     <h1>"Изучаем django"</h1>

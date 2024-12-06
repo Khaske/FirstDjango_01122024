@@ -5,3 +5,7 @@
 2. 'source django_venv/bin/activate'
 3. 'pip install -r requirements.txt'
 4. 'python manage.py runserver'
+
+## Получение репозитория
+1. git init # в папке проекта
+2. git pull origin master
