@@ -7,8 +7,10 @@
 4. 'python manage.py runserver'
 
 ## Получение репозитория
-1. git init # в папке проекта
-2. git pull origin master
+```
+git init # в папке проекта
+git pull origin master
+```
 
 ## Дополнительно
 1. Git Graph
@@ -25,3 +27,26 @@ ext install batisteo.vscode-django
     "*.html": "django-html"
 }
 ```
+4. Дополнительные инструменты:
+```
+pip install django-extensions
+pip install ipython
+```
+
+### Работа с БД
+1. https://antares-sql.app/ , скачиваем AppImage. ПКМ > Properties > Permissions > Allow this file to run as a programm
+2. Установка sqlite3 через терминал:
+```
+sudo apt update
+sudo apt install sqlite3
+``` 
+3. Создание модели django:
+В settings.py > INSTALLED_APPS добавляем свои приложения.
+```
+python manage.py makemigrations
+```
+4. Миграция БД:
+```
+python manage.py migrate
+```
+8 PYTHON Day 2_4 . 47 min
