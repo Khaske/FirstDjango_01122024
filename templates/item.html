@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница товара</title>
+</head>
+<body>
+    <header>
+        / <a href="/"> Главная </a> / <a href="/items"> Товары </a> / <a href="/about"> Об авторе </a>
+    </header>
+
+    <p>Наименование: {{item.name}}</p>
+    {% if item.quantity == 0 %}
+        <p>Товар отсутствует.</p>
+    {% else %}
+        <p>Количество: {{item.quantity}} шт.</p>
+    {% endif %}
+    <a href="/items">Назад к списку товаров</a>
+</body>
+</html>
