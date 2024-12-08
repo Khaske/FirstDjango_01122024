@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ def home(request): # M1.task_1
     """
     return HttpResponse(text)
 
-def about(request): # M1.task_2
+def about(request): # M1.task_2, лучше сделать через словарь
     text = """
     Имя: <strong>Ренат</strong><br/>
     Отчество: <strong>Наильевич</strong><br/>
@@ -32,9 +32,17 @@ def about(request): # M1.task_2
 def get_item(request, item_id): # M1.task_3&4&6
     for item in items:
         if item["id"] == item_id:
-            return HttpResponse(f'<p>Товар с id={item["id"]}: {item["name"]}, {item["quantity"]} шт.</p>\n<a href="http://127.0.0.1:8000/items/">Назад к списку товаров</a>')
+            result = f"""
+            <p>Товар с id={item["id"]}: {item["name"]}, {item["quantity"]} шт.</p>
+            <a href="/items">Назад к списку товаров</a>
+            """
+            return HttpResponse(result)
     else:
-        return HttpResponse(f'<p>Товар с id={item_id}: не найден</p>\n<a href="http://127.0.0.1:8000/items/">Назад к списку товаров</a>')
+        result = f"""
+        <p>Товар с id={item_id}: не найден!</p>
+        <a href="/items">Назад к списку товаров</a>
+        """
+        return HttpResponseNotFound(result)
     
 def get_items_list(request): # M1.task_5&6
     list = """
@@ -42,6 +50,6 @@ def get_items_list(request): # M1.task_5&6
     <ol>\n
     """
     for item in items:
-        list += f'    <li><a href="http://127.0.0.1:8000/items/{item["id"]}">{item["name"]}, {item["quantity"]} шт.</a></li>\n'
+        list += f'  <li><a href="/items/{item["id"]}">{item["name"]}, {item["quantity"]} шт.</a></li>\n'
     list += "</ol>"
     return HttpResponse(list)

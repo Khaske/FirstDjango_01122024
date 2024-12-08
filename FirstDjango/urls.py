@@ -22,5 +22,5 @@ urlpatterns = [
     path('', views.home),
     path('about', views.about),
     path('items/<int:item_id>', views.get_item),
-    path('items/', views.get_items_list)
+    path('items', views.get_items_list)
 ]
