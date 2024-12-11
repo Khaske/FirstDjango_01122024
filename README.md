@@ -4,7 +4,8 @@
 1. 'python3 -m venv django_venv'
 2. 'source django_venv/bin/activate'
 3. 'pip install -r requirements.txt'
-4. 'python manage.py runserver'
+4. 'python manage.py migrate'
+5. 'python manage.py runserver'
 
 ## Получение репозитория
 ```
@@ -30,7 +31,14 @@ ext install batisteo.vscode-django
 4. Дополнительные инструменты:
 ```
 pip install django-extensions
+```
+В settings.py > INSTALLED_APPS django_extensions
+```
 pip install ipython
+```
+Запуск:
+```
+python manage.py shell_plus --ipython
 ```
 
 ### Работа с БД
@@ -49,4 +57,3 @@ python manage.py makemigrations
 ```
 python manage.py migrate
 ```
-8 PYTHON Day 2_4 . 47 min

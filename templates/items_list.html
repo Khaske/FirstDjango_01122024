@@ -1,20 +1,56 @@
 <!DOCTYPE html>
+
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список товаров</title>
 </head>
+
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .cards {
+        width: 180px;
+        color: rgb(0, 140, 255);
+        font-size: 16px;
+        border: 1px solid grey;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    h2 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
+
 <body>
     <header>
         / <a href="/"> Главная </a> / <a href="/items"> Товары </a> / <a href="/about"> Об авторе </a>
     </header>
     
     <h2>Список товаров:</h2>
-    <ol>
+
+    <div class="container">
         {% for item in items %}
-            <li> <a href="/items/{{item.id}}"> {{item.name}} </a> </li>
+            <a href="/items/{{item.id}}">
+            <div class="cards">
+                <h3>{{item.name}} {{item.brand}}</h3>
+                <p>{{item.description}}</p>
+            </div>
+            </a>
         {% endfor %}
-    </ol>
+    </div>
 </body>
+
 </html>
