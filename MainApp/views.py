@@ -23,21 +23,13 @@ def about(request): # M1.task_2, лучше сделать через слова
     return HttpResponse(text)
 
 def get_item(request, item_id: int): # M3.task_3
-    # item = next((item for item in items if item["id"] == item_id), None) # генератор
-    # if item is not None:
-    #     context = {
-    #         "item": item
-    #     }
-    #     return render(request, "item.html", context)
-    # return HttpResponseNotFound(f"Товар с id = {item_id} не найден!")
-    items = Item.objects.all()
-    for item in items:
-        if item.id == item_id:
-            context = {
-                "item": item
-            }
-            return render(request, "item.html", context)
-    return HttpResponseNotFound("Товар не найден!")
+    try:
+        context = {
+            "item": Item.objects.get(pk=item_id)
+        }
+        return render(request, "item.html", context)
+    except:
+        return HttpResponseNotFound("Товар не найден!")
     
 def get_items_list(request): # M3.task_2
     context = {
