@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
-</head>
-<body>
-    <header>
-        / <a href="/"> Главная </a> / <a href="/items"> Товары </a> / <a href="/about"> Об авторе </a>
-    </header>
+{% extends "base.html" %}
 
+{% load static %} {# Подключить сразу! #}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <br>
+    <img width="50px" src="{% static "images/django.svg" %}" alt="django.svg">
     <h2>Приветствую!</h2>
-    <p>Меня зовут: <i>{{ name }}</i>
+    <span style="color: blue;">Меня зовут: <i>{{ name }}</i></span><br>
     <p>Мой email: <i>{{ email }}</i>
     <p>Это главная страница сайта.</p>
     <i>Сайт пока в разработке...</i>
-</body>
-</html>
+{% endblock content %}

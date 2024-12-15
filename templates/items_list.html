@@ -1,56 +1,28 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="ru">
+{% load static %} {# Подключить сразу! #}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список товаров</title>
-</head>
+{% block title %}
+    Список товаров
+{% endblock %}
 
-<style>
-    .container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .cards {
-        width: 180px;
-        color: rgb(0, 140, 255);
-        font-size: 16px;
-        border: 1px solid grey;
-        border-radius: 5px;
-        padding: 10px;
-    }
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock style %}
 
-    h2 {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    a {
-        text-decoration: none;
-    }
-</style>
-
-<body>
-    <header>
-        / <a href="/"> Главная </a> / <a href="/items"> Товары </a> / <a href="/about"> Об авторе </a>
-    </header>
-    
+{% block content %}
+    {{ block.super }}
     <h2>Список товаров:</h2>
 
-    <div class="container">
+    <div class="items">
         {% for item in items %}
-            <a href="/items/{{ item.id }}">
-            <div class="cards">
-                <h3>{{ item.name }} {{ item.brand }}</h3>
+        <div class="item">
+            <a href="{% url "item-detail" item.id %}">
+                <p class="item_name">{{ item.name }} {{ item.brand }}</p>
                 <p>{{ item.description }}</p>
-            </div>
-            </a>
+                </a>
+        </div>
         {% endfor %}
     </div>
-</body>
-
-</html>
+{% endblock %}

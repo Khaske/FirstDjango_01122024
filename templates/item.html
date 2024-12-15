@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страница товара</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <header>
-        / <a href="/"> Главная </a> / <a href="/items"> Товары </a> / <a href="/about"> Об авторе </a>
-    </header>
+{% block title %}
+    Страница товара
+{% endblock %}
 
+{% block content %}
+    {{ block.super }}
     <p>Наименование: {{ item.name }}</p>
     <p>Бренд: {{ item.brand }}</p>
     <p>Количество: {{ item.count | default:"Товар отсутствует!" }}</p>
-    <a href="/items">Назад к списку товаров</a>
-
-</body>
-</html>
+    <a href="{% url "items-list" %}">Назад к списку товаров</a>
+{% endblock  %}

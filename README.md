@@ -15,6 +15,10 @@ git clone https://github.com/vadshi/FirstDjango_18052024.git FirstDjango_teacher
 git init # в папке проекта
 git pull origin master
 ```
+Проверка подключения к репозиторию:
+```
+git remote -v
+```
 
 ## Дополнительно
 1. Git Graph
