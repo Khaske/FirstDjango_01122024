@@ -9,6 +9,9 @@
 
 ## Получение репозитория
 ```
+git clone https://github.com/vadshi/FirstDjango_18052024.git FirstDjango_teacher
+```
+```
 git init # в папке проекта
 git pull origin master
 ```
@@ -41,7 +44,8 @@ pip install ipython
 python manage.py shell_plus --ipython
 ```
 
-### Работа с БД
+## Работа с БД
+### Дополнительные инструменты
 1. https://antares-sql.app/ , скачиваем AppImage. ПКМ > Properties > Permissions > Allow this file to run as a programm
 2. Установка sqlite3 через терминал:
 ```
@@ -50,10 +54,21 @@ sudo apt install sqlite3
 ``` 
 3. Создание модели django:
 В settings.py > INSTALLED_APPS добавляем свои приложения.
+4. Миграция БД:
 ```
 python manage.py makemigrations
 ```
-4. Миграция БД:
 ```
 python manage.py migrate
+```
+### Изменение структуры БД
+1. Вносим изменения в models.py, если в БД уже существуют элементы, то добавляем default=''.
+2. Проводим миграцию БД
+### Выгрузить данные из БД
+```
+python manage.py dumpdata MainApp --indent 4 > ./fixtures/save_all.json
+```
+### Загрузить данные в БД
+```
+python manage.py loaddata ./fixtures/save_all.json
 ```

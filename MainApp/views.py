@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from MainApp.models import Item
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -24,12 +25,15 @@ def about(request): # M1.task_2, лучше сделать через слова
 
 def get_item(request, item_id: int): # M3.task_3
     try:
+        item = Item.objects.get(pk=item_id)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound("Товар не найден!")
+    else:
         context = {
-            "item": Item.objects.get(pk=item_id)
+            "item": item
         }
         return render(request, "item.html", context)
-    except:
-        return HttpResponseNotFound("Товар не найден!")
+
     
 def get_items_list(request): # M3.task_2
     context = {

@@ -43,10 +43,10 @@
 
     <div class="container">
         {% for item in items %}
-            <a href="/items/{{item.id}}">
+            <a href="/items/{{ item.id }}">
             <div class="cards">
-                <h3>{{item.name}} {{item.brand}}</h3>
-                <p>{{item.description}}</p>
+                <h3>{{ item.name }} {{ item.brand }}</h3>
+                <p>{{ item.description }}</p>
             </div>
             </a>
         {% endfor %}
