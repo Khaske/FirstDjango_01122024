@@ -26,11 +26,16 @@ def about(request): # M1.task_2, лучше сделать через слова
 def get_item(request, item_id: int): # M3.task_3
     try:
         item = Item.objects.get(pk=item_id)
+        colors = []
+        # Проверяем на наличие цвета у элемента:
+        if item.colors.exists():
+            colors = item.colors.all()
     except ObjectDoesNotExist:
         return HttpResponseNotFound("Товар не найден!")
     else:
         context = {
-            "item": item
+            "item": item,
+            "colors": colors,
         }
         return render(request, "item.html", context)
 
